@@ -33,7 +33,7 @@ const products = [
         description: "Veggie patty with avocado, lettuce, and special herb sauce",
         price: 139,
         extra:239,
-         image: "images/karl-janisse-G8QZP_RddAY-unsplash.jpg"
+         image: "karl-janisse-G8QZP_RddAY-unsplash.jpg"
 
     },
     {
