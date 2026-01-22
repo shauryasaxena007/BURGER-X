@@ -26,3 +26,51 @@ The project focuses on clean UI, attractive food presentation, and smooth user i
 
 ## 📂 Project Structure
 
+BURGER-X/
+│
+├── index.html
+├── style.css
+├── script.js
+├── images/
+│ └── burgers images
+└── README.md
+
+
+---
+
+## ▶️ How to Run the Project
+
+1. Download or clone the repository  
+2. Open `index.html` in your browser  
+3. Enjoy the BURGER X website 🍟🍔
+
+---
+
+## 🎯 Learning Outcomes
+
+- Improved HTML semantic structure
+- Better understanding of CSS Flexbox & positioning
+- JavaScript DOM manipulation
+- Real-world UI design practice
+
+---
+
+## 🚀 Future Improvements
+
+- Add backend for order processing
+- Connect database for dynamic menu
+- Add login/signup functionality
+- Payment gateway integration
+
+---
+
+## 👤 Author
+
+**Shaurya Saxena**  
+BCA Student | Aspiring Web Developer  
+
+---
+
+## 📌 Note
+
+This project is created for **learning and practice purposes**.
