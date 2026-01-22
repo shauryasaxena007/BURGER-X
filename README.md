@@ -72,6 +72,4 @@ BCA Student | Aspiring Web Developer
 ---
 
 ## 📌 Note
-
-This project is created for **learning and practice purposes**.
-![Uploading image.png…]()
+<img width="1919" height="1083" alt="image" src="https://github.com/user-attachments/assets/4f81236e-3718-4ac7-a128-88737dc09f1e" />
