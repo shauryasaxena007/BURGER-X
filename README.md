@@ -50,7 +50,7 @@ BURGER-X/
 
 - Improved HTML semantic structure
 - Better understanding of CSS Flexbox & positioning
-- JavaScript DOM manipulation
+- JavaScript DOM manipulations
 - Real-world UI design practice
 
 ---
