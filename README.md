@@ -5,7 +5,7 @@ The project focuses on clean UI, attractive food presentation, and smooth user i
 
 ---
 
-## 🔥 Features
+# 🔥 Features
 
 - 🍔 Attractive landing page for burger restaurant
 - 📱 Fully responsive design (mobile, tablet, desktop)
