@@ -58,7 +58,7 @@ const products = [
         name: "Mushroom Swiss",
         description: "Sautéed mushrooms with Swiss cheese and garlic aioli",
         extra:299, price: 199,
-        image: "zayed-ahmed-zadu-cujwrR1zfDI-unsplash.jpg"
+        image: "ayed-ahmed-zadu-cujwrR1zfDI-unsplash.jpg"
     },
     {
         id: 8,
@@ -79,7 +79,7 @@ const products = [
         name: "Noodles",
         description: "Spicy, grilled garlic flavoured noodles ",
         extra:269, price: 169,
-        image: "zoshua-colah-pw7W5rdhIT8-unsplash.jpg"
+        image: "oshua-colah-pw7W5rdhIT8-unsplash.jpg"
     },
     {
         id: 11,
