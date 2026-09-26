@@ -187,7 +187,7 @@ section {
 /* ===== HERO SECTION ===== */
 .hero-section {
     /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-   */  background-image:url(mae-mu-I7A_pHLcQK8-unsplash2222222.jpg);
+   */  background-image:url(image/mae-mu-I7A_pHLcQK8-unsplash2222222.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
@@ -368,7 +368,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("sajad-nazeran-1iiPRVapgrw-unsplash.jpg");
+  background-image: url("image/sajad-nazeran-1iiPRVapgrw-unsplash.jpg");
   background-size: cover;
   background-position: center;
   filter: blur(10px);
@@ -524,7 +524,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("sajad-nazeran-1iiPRVapgrw-unsplash.jpg");
+  background-image: url("image/sajad-nazeran-1iiPRVapgrw-unsplash.jpg");
   background-size: cover;
   background-position: center;
   height: 100%;
@@ -632,7 +632,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("sajad-nazeran-1iiPRVapgrw-unsplash.jpg");
+  background-image: url("image/sajad-nazeran-1iiPRVapgrw-unsplash.jpg");
   background-size: cover;
   background-position: center;
   filter: blur(4px);
