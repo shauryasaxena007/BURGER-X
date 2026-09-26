@@ -1,101 +1,7 @@
 // ===== PRODUCT DATA =====
 alert("Welcome to THE BURGER X! Enjoy delicious burgers and more.");
 
-const products = [
-    {
-        id: 1,
-        name: "Classic Burger",
-        description: "Juicy beef patty with fresh lettuce, tomato, and special sauce",
-        extra:249,
-        price: 149,
-       image: "amirali-mirhashemian-sc5sTPMrVfk-unsplash.jpg"
-
-    },
-    {
-        id: 2,
-        name: "Cheese Burger",
-        description: "Double cheese with premium beef patty and crispy bacon",
-       extra:279, price: 179,
-         image: "amirali-mirhashemian-jh5XyK4Rr3Y-unsplash.jpg"
-
-    },
-    {
-        id: 3,
-        name: "Chicken Burger",
-        description: "Grilled chicken breast with mayo and fresh veggies",
-       extra:259, price: 159,
-         image: "food-burger-flame-835852.jpeg"
-
-    },
-    {
-        id: 4,
-        name: "Veg Delight",
-        description: "Veggie patty with avocado, lettuce, and special herb sauce",
-        price: 139,
-        extra:239,
-         image: "karl-janisse-G8QZP_RddAY-unsplash.jpg"
-
-    },
-    {
-        id: 5,
-        name: "BBQ Burger",
-        description: "Smoky BBQ sauce with caramelized onions and beef patty",
-        price: 129,
-        extra:229,
-        image: "kirsty-tg-IVCZE9U6OQw-unsplash.jpg"
-
-    },
-    {
-        id: 6,
-        name: "Spicy Chicken ",
-        description: "Hot and spicy chicken with jalapeños and pepper jack cheese",
-        extra:269, price: 169,
-         image: "alex-bayev-BUPlkEeDmMk-unsplash.jpg"
-
-    },
-    {
-        id: 7,
-        name: "Mushroom Swiss",
-        description: "Sautéed mushrooms with Swiss cheese and garlic aioli",
-        extra:299, price: 199,
-        image: "ayed-ahmed-zadu-cujwrR1zfDI-unsplash.jpg"
-    },
-    {
-        id: 8,
-        name: "Fish Burger",
-        description: "Crispy fish fillet with tartar sauce and fresh coleslaw",
-        extra:279, price: 179,
-        image: "jacky-watt-H1Ji_RjTKd4-unsplash.jpg"
-    },
-    {
-        id: 9,
-        name: "Paneer Tikka",
-        description: "Grilled paneer tikka with mint chutney and onions",
-        extra:239, price: 139,
-        image: "rupa-venketa-vardhan-85gaOsWNsHo-unsplash.jpg"
-    },
-    {
-        id: 10,
-        name: "Noodles",
-        description: "Spicy, grilled garlic flavoured noodles ",
-        extra:269, price: 169,
-        image: "oshua-colah-pw7W5rdhIT8-unsplash.jpg"
-    },
-    {
-        id: 11,
-        name: "Diet Coke",
-        description: "Refreshing without suger Coke",
-        extra:189, price: 89,
-        image: "andrey-ilkevich-Qvnohn4GyJA-unsplash.jpg"
-    },
-    {
-        id: 12,
-        name: "French Fries",
-        description: "French Fries is not food it is feeling",
-        extra:289, price: 189,
-        image: "mustafa-fatemi-IPukhdQ1zq8-unsplash (1).jpg"
-    },
-];
+let products = [];
 
 // ===== CART MANAGEMENT =====
 let cart = JSON.parse(localStorage.getItem('sburgerx_cart')) || [];
@@ -146,55 +52,171 @@ function initializeNavbar() {
 }
 
 // ===== LOAD PRODUCTS =====
-function loadProducts() {
-    const container = document.getElementById('productContainer');
-    container.innerHTML = '';
+async function loadProducts() {
 
-    products.forEach(product => {
-        const productCard = `
-            <div class="col-lg-4 col-md-6">
-                <div class="product-card">
-                    <div class="product-image">
-                     <img src="${product.image}" alt="${product.name}">
+    const container = document.getElementById('productContainer');
+
+    try {
+
+        const response = await fetch("http://127.0.0.1:5000/burgers");
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch burgers");
+        }
+
+        products = await response.json();
+
+        container.innerHTML = '';
+
+        products.forEach(product => {
+
+            const productCard = `
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+
+                        <div class="product-image">
+                            <img src="image/${product.image}" alt="${product.name}">
                         </div>
 
-                    <div class="product-body">
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-description">${product.description}</p>
-                        <div class="product-footer">
-                        <span class="product-extra">₹${product.extra}</span>   
-                        <span class="product-price">₹${product.price}</span>    
-                          </div>
-                          <div class="product-foot-btn">
-                            <button class="btn-add-cart" onclick="addToCart(${product.id})">
-                                <i class="fas fa-cart-plus"></i> Add
-                            </button>
+                        <div class="product-body">
+
+                            <h3 class="product-title">
+                                ${product.name}
+                            </h3>
+
+                            <p class="product-description">
+                                ${product.description}
+                            </p>
+
+                            <div class="product-footer">
+                                <span class="product-extra">
+                                    ₹${product.extra}
+                                </span>
+
+                                <span class="product-price">
+                                    ₹${product.price}
+                                </span>
+                            </div>
+
+                            <div class="product-foot-btn">
+
+                                <button 
+                                    class="btn-add-cart" 
+                                    onclick="addToCart(${product.id})">
+
+                                    <i class="fas fa-cart-plus"></i>
+                                    Add
+
+                                </button>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
+            `;
+
+            container.innerHTML += productCard;
+        });
+
+    } catch (error) {
+
+        console.error("Error loading burgers:", error);
+
+        container.innerHTML = `
+            <div class="alert alert-danger">
+                Unable to load burgers from server.
             </div>
         `;
-        container.innerHTML += productCard;
-    });
+    }
 }
 
 // ===== ADD TO CART =====
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    const existingItem = cart.find(item => item.id === productId);
+async function addToCart(productId) {
 
-    if (existingItem) {
-        existingItem.quantity++;
-    } else {
-        cart.push({
-            ...product,
-            quantity: 1
-        });
+    // Check login
+    const user = JSON.parse(
+        localStorage.getItem("burgerx_user")
+    );
+
+    if (!user) {
+        showNotification("Item added to cart!", "success");
+        await loadDatabaseCart();
+        setTimeout(() => {
+            window.location.href = "/auth";
+        }, 1000);
+
+        return;
     }
 
-    saveCart();
-    updateCartUI();
-    showNotification('Item added to cart!');
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:5000/cart",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    user_id: user.id,
+                    burger_id: productId,
+                    quantity: 1
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log(data);
+
+       if (data.success) {
+
+    showNotification("Item added to cart!", "success");
+
+    // DB se latest cart lao
+    const cartResponse = await fetch(
+        `http://127.0.0.1:5000/cart/${user.id}`
+    );
+
+    const cartData = await cartResponse.json();
+
+    if (cartData.success) {
+
+        cart = cartData.cart.map(item => ({
+            id: item.burger_id,
+            name: item.name,
+            price: Number(item.price),
+            image: item.image,
+            quantity: Number(item.quantity),
+            emoji: "🍔"
+        }));
+
+        // 🔥 Immediately update cart number
+        updateCartUI();
+
+        // 🔥 Immediately update cart items
+        renderCartItems();
+    }
+} else {
+
+            showNotification(
+                data.message,
+                "warning"
+            );
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        showNotification(
+            "Unable to add item to cart.",
+            "warning"
+        );
+    }
 }
 
 // ===== REMOVE FROM CART =====
@@ -387,4 +409,132 @@ function initializeScrollAnimations() {
         el.style.transition = 'all 0.6s ease-out';
         observer.observe(el);
     });
+}
+// ===== AUTH NAVBAR =====
+
+function updateAuthNavbar() {
+
+    const authNav = document.getElementById("authNav");
+
+    if (!authNav) return;
+
+    const user = JSON.parse(
+        localStorage.getItem("burgerx_user")
+    );
+
+    if (user) {
+
+        authNav.innerHTML = `
+            <a class="nav-link" href="#" id="userName">
+                👤 ${user.name}
+            </a>
+
+            <a class="nav-link" href="#" id="logoutBtn">
+                Logout
+            </a>
+        `;
+
+        document.getElementById("logoutBtn").addEventListener(
+            "click",
+            function(e) {
+
+                e.preventDefault();
+
+                localStorage.removeItem("burgerx_user");
+
+                window.location.href = "/";
+            }
+        );
+
+    } else {
+
+        authNav.innerHTML = `
+            <a class="nav-link" href="/auth">
+                Login
+            </a>
+        `;
+    }
+}
+
+
+// Run when website loads
+document.addEventListener("DOMContentLoaded", function() {
+    updateAuthNavbar();
+    loadDatabaseCart();
+});
+async function loadDatabaseCart() {
+
+    const user = JSON.parse(localStorage.getItem("burgerx_user"));
+
+    if (!user) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://127.0.0.1:5000/cart/${user.id}`
+        );
+
+        const data = await response.json();
+
+        console.log("Database Cart:", data);
+
+        if (data.success) {
+
+            cart = data.cart.map(item => ({
+                id: item.burger_id,
+                name: item.name,
+                price: item.price,
+                image: item.image,
+                quantity: item.quantity
+            }));
+
+            renderCartItems();
+
+        }
+
+    } catch (error) {
+
+        console.error("Cart loading error:", error);
+
+    }
+}
+// ===== LOAD CART FROM DATABASE =====
+async function loadDatabaseCart() {
+
+    const user = JSON.parse(localStorage.getItem("burgerx_user"));
+
+    if (!user) return;
+
+    try {
+
+        const response = await fetch(
+            `http://127.0.0.1:5000/cart/${user.id}`
+        );
+
+        const data = await response.json();
+
+        console.log("Database Cart:", data);
+
+        if (data.success) {
+
+            cart = data.cart.map(item => ({
+                id: item.burger_id,
+                name: item.name,
+                price: Number(item.price),
+                image: item.image,
+                quantity: Number(item.quantity),
+                emoji: "🍔"
+            }));
+
+            updateCartUI();
+            renderCartItems();
+        }
+
+    } catch (error) {
+
+        console.error("Database cart error:", error);
+
+    }
 }
