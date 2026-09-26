@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Test</title>
+</head>
+<body>
+
+    <h2>BURGER X - Register Test</h2>
+
+    <input type="text" id="name" placeholder="Name">
+    <br><br>
+
+    <input type="email" id="email" placeholder="Email">
+    <br><br>
+
+    <input type="password" id="password" placeholder="Password">
+    <br><br>
+
+    <button onclick="registerUser()">Register</button>
+
+    <p id="message"></p>
+
+    <script>
+        async function registerUser() {
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+
+                const response = await fetch(
+                    "http://127.0.0.1:5000/register",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                document.getElementById("message").textContent =
+                    data.message;
+
+                console.log(data);
+
+            } catch (error) {
+
+                console.error(error);
+
+                document.getElementById("message").textContent =
+                    "Something went wrong!";
+            }
+        }
+    </script>
+
+</body>
+</html>
